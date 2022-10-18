@@ -29,6 +29,14 @@ class App extends Component {
     this.setState({inputValue: ""})
   }
 
+  handleDelete = (index) => {
+    let copy = [...this.state.listOfTodos]
+    copy.splice(index, 1)
+    this.setState({listOfTodos: copy})
+
+
+  }
+
   render() {
       return (
         <div className="App">
@@ -39,7 +47,9 @@ class App extends Component {
             <button type='submit'>Submit</button>
           </form>
             <ul>{this.state.listOfTodos.map((todo, index) => {
-              return <li key={index}>{todo}</li>
+              return <li key={index}>{todo}
+                <button onClick={() => this.handleDelete(index)}>X</button>
+              </li>
             })}</ul>
           <a
             className="App-link"
